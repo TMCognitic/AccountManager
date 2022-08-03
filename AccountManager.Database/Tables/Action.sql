@@ -1,0 +1,12 @@
+﻿CREATE TABLE [dbo].[Action]
+(
+	[Id] UNIQUEIDENTIFIER NOT NULL
+		CONSTRAINT DF_Action_Id DEFAULT (NEWSEQUENTIALID()),
+	[Amount] DECIMAL(7,2) NOT NULL,
+	[Note] NVARCHAR(255) NOT NULL,
+	[CategoryId] INT NOT NULL,
+	[AccountId] UNIQUEIDENTIFIER NOT NULL,
+    CONSTRAINT [PK_Action] PRIMARY KEY ([Id]), 
+    CONSTRAINT [FK_Action_Category] FOREIGN KEY ([CategoryId]) REFERENCES [Category]([Id]),
+    CONSTRAINT [FK_Action_Account] FOREIGN KEY ([AccountId]) REFERENCES [Account]([Id])
+)
